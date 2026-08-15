@@ -6,7 +6,7 @@
   <title>Apex Procurement AI - Engineering Approach & Architecture</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #090d16;
@@ -20,7 +20,7 @@
       --blue: #3b82f6;
       --blue-bg: rgba(59, 130, 246, 0.12);
       --amber: #f59e0b;
-      --purple: #8b5cf6;
+      --amber-bg: rgba(245, 158, 11, 0.12);
       --font: 'Plus Jakarta Sans', sans-serif;
       --mono: 'JetBrains Mono', monospace;
     }
@@ -36,7 +36,7 @@
       flex-direction: column;
     }
 
-    /* Top Navigation Bar */
+    /* Top Bar */
     .top-bar {
       height: 56px;
       padding: 0 32px;
@@ -89,20 +89,9 @@
       transition: all 0.15s;
     }
 
-    .btn:hover {
-      background: #2d3748;
-      border-color: #4b5563;
-    }
-
-    .btn-primary {
-      background: var(--blue);
-      border-color: var(--blue);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: #2563eb;
-    }
+    .btn:hover { background: #2d3748; border-color: #4b5563; }
+    .btn-primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .btn-primary:hover { background: #2563eb; }
 
     .counter {
       font-family: var(--mono);
@@ -111,7 +100,7 @@
       font-weight: 600;
     }
 
-    /* Main Slide Viewport */
+    /* Viewport */
     .viewport {
       flex: 1;
       display: flex;
@@ -122,7 +111,7 @@
     .slide {
       position: absolute;
       inset: 0;
-      padding: 40px 64px;
+      padding: 48px 64px;
       display: none;
       flex-direction: column;
       justify-content: center;
@@ -131,13 +120,11 @@
       overflow-y: auto;
     }
 
-    .slide.active {
-      display: flex;
-    }
+    .slide.active { display: flex; }
 
-    /* Slide Typography */
+    /* Typography */
     .slide-tag {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -158,27 +145,13 @@
       font-size: 17px;
       color: var(--text-muted);
       margin-bottom: 28px;
-      max-width: 980px;
+      max-width: 960px;
     }
 
-    /* Layout Grids */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
+    /* Grids */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 
     /* Cards */
     .card {
@@ -207,27 +180,28 @@
     .card h3 {
       font-size: 17px;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: #fff;
     }
 
     .card p {
-      font-size: 13.5px;
+      font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     .card ul {
       padding-left: 18px;
-      font-size: 13.5px;
+      font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.65;
+      line-height: 1.6;
     }
 
     .card li { margin-bottom: 6px; }
+    .card strong { color: #f3f4f6; }
 
     .stat-number {
-      font-size: 36px;
+      font-size: 38px;
       font-weight: 800;
       font-family: var(--mono);
       color: #fff;
@@ -243,7 +217,7 @@
       color: var(--text-muted);
     }
 
-    /* Code & Diagram */
+    /* Diagram */
     .arch-diagram {
       background: #0a0f1d;
       border: 1px solid var(--border);
@@ -268,7 +242,7 @@
 
     th {
       background: rgba(31, 41, 55, 0.8);
-      padding: 10px 14px;
+      padding: 12px 14px;
       text-align: left;
       font-weight: 700;
       font-size: 11px;
@@ -279,7 +253,7 @@
     }
 
     td {
-      padding: 10px 14px;
+      padding: 12px 14px;
       border-bottom: 1px solid rgba(55, 65, 81, 0.4);
       color: var(--text-muted);
     }
@@ -294,7 +268,7 @@
   <div class="top-bar">
     <div class="brand-title">
       <span>🏭 Reflection AI &times; Apex Manufacturing</span>
-      <span class="pill">FDE Architecture & Approach</span>
+      <span class="pill">FDE Milestone Review</span>
     </div>
     <div class="slide-nav">
       <button class="btn" onclick="prevSlide()">◀ Prev</button>
@@ -306,67 +280,67 @@
   <!-- Viewport -->
   <div class="viewport">
 
-    <!-- SLIDE 1: Title & Approach Overview -->
+    <!-- SLIDE 1: Title & Agenda -->
     <div class="slide active" id="slide-1">
-      <div class="slide-tag">Forward Deployed Engineering Methodology</div>
+      <div class="slide-tag">Forward Deployed Engineering Review</div>
       <h1 class="slide-title">Autonomous AI Procurement Agent</h1>
-      <p class="slide-subtitle">How We Approached, Architected, and Hill-Climbed an Enterprise-Grade Manufacturing Agent</p>
+      <p class="slide-subtitle">Engineering Approach, Hybrid Architecture & Multi-Model Benchmark</p>
       
       <div class="grid-4">
         <div class="card card-highlight">
-          <div class="stat-label">Step 01</div>
+          <div class="stat-label">Phase 01</div>
           <h3>First Principles</h3>
-          <p>Why pure LLM agents fail in manufacturing and how we isolated math from reasoning.</p>
+          <p>Why pure LLMs fail in manufacturing & isolating math from reasoning.</p>
         </div>
         <div class="card card-highlight">
-          <div class="stat-label">Step 02</div>
+          <div class="stat-label">Phase 02</div>
           <h3>Hybrid Architecture</h3>
-          <p>Deterministic Python MRP & ASL core + Pluggable Open Model structured reasoning.</p>
+          <p>Deterministic Python core (built via Coding Agent) + Pluggable LLM layer.</p>
         </div>
         <div class="card card-highlight">
-          <div class="stat-label">Step 03</div>
-          <h3>Systematic Diagnosis</h3>
-          <p>Building a 66-run evaluation harness & taxonomizing baseline loss patterns (v1.0).</p>
+          <div class="stat-label">Phase 03</div>
+          <h3>66-Run Leaderboard</h3>
+          <p>Multi-model matrix, error taxonomy, and +4.7% prompt hill-climbing.</p>
         </div>
         <div class="card card-highlight">
-          <div class="stat-label">Step 04</div>
-          <h3>Data-Driven Hill Climbing</h3>
-          <p>Prompt versioning registry elevating scores from 94.7% to 99.4% with zero code churn.</p>
+          <div class="stat-label">Phase 04</div>
+          <h3>Production Scaling</h3>
+          <p>Multi-Agent Supervisor, Human-in-the-Loop, and ERP integration.</p>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 2: Step 1 - First Principles & Domain Challenges -->
+    <!-- SLIDE 2: Step 1 - First Principles -->
     <div class="slide" id="slide-2">
-      <div class="slide-tag">Step 1: First Principles Problem Decomposition</div>
-      <h2 class="slide-title">Why Naive LLM Wrappers Fail in Manufacturing</h2>
-      <p class="slide-subtitle">Analyzing the fundamental mismatch between stochastic LLMs and manufacturing invariance.</p>
+      <div class="slide-tag">Step 1: First Principles</div>
+      <h2 class="slide-title">Why Naive LLM Prompts Fail</h2>
+      <p class="slide-subtitle">Manufacturing requires zero math error and strict policy adherence.</p>
       
       <div class="grid-2">
         <div class="card card-amber">
-          <h3>❌ The Failure Modes of Pure Prompting</h3>
+          <h3>❌ Stochastic LLM Bottlenecks</h3>
           <ul>
-            <li><strong>Arithmetic Drift & Hallucination</strong>: LLMs make subtle multiplication errors on multi-tier BOM quantities.</li>
-            <li><strong>Policy Bypass under Context Load</strong>: Temporal management memos (e.g. <code>MEMO-072</code> expiry on Sep 30) get diluted when prompts grow.</li>
-            <li><strong>Uncontrolled Non-Determinism</strong>: Placing orders with uncertified or unapproved suppliers due to prompt phrasing nuances.</li>
+            <li><strong>Arithmetic Drift</strong>: Subtle float/multiplication errors on BOM math.</li>
+            <li><strong>Policy Leakage</strong>: Temporal memos ignored as prompts get long.</li>
+            <li><strong>Supplier Risks</strong>: Unapproved/blacklisted vendors selected.</li>
           </ul>
         </div>
         <div class="card card-emerald">
-          <h3>✅ The Forward Deployed Engineering Insight</h3>
+          <h3>✅ The FDE Engineering Solution</h3>
           <ul>
-            <li><strong>Separate Precision from Reasoning</strong>: Calculations & hard policy constraints must be <strong>100% deterministic (0% error rate)</strong> in pure Python.</li>
-            <li><strong>Empower LLMs Where They Excel</strong>: Multi-vendor split trade-offs, domestic supplier price premiums, audit-ready rationales, and proactive risk alerts.</li>
-            <li><strong>Contract-Driven Outputs</strong>: Native Pydantic schema validation for guaranteed database commit safety.</li>
+            <li><strong>Deterministic Core</strong>: Pure Python for <strong>0% math & policy error</strong>.</li>
+            <li><strong>Cognitive Layer</strong>: LLM focused on multi-vendor trade-offs & alerts.</li>
+            <li><strong>Type Safety</strong>: Pydantic schemas for guaranteed DB commits.</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 3: Step 2 - Hybrid Architecture -->
+    <!-- SLIDE 3: Step 2 - Hybrid Architecture & Coding Agent -->
     <div class="slide" id="slide-3">
-      <div class="slide-tag">Step 2: Core Engineering Design</div>
-      <h2 class="slide-title">The Hybrid Deterministic-LLM Architecture</h2>
-      <p class="slide-subtitle">Strict Separation of Concerns: 100% Precision Gatekeeping + Cognitive Sourcing Intelligence</p>
+      <div class="slide-tag">Step 2: Core Architecture</div>
+      <h2 class="slide-title">Hybrid Deterministic-LLM Pattern</h2>
+      <p class="slide-subtitle">Deterministic Core engineered via autonomous Coding Agent for 100% precision.</p>
       
       <div class="grid-2">
         <div class="arch-diagram">
@@ -375,11 +349,11 @@
          ▼
 ┌─────────────────────────────────────────┐
 │ 1. Deterministic Core (Pure Python)     │
-│   • DemandAnalyzer: BOM Explosion &     │
-│     In-Flight Netting (0% Math Error)   │
+│   • Built via Coding Agent (0% Bug)     │
+│   • DemandAnalyzer: BOM & Netting       │
 │   • PolicyEngine: ASL & Memo Filter     │
 └────────────────────┬────────────────────┘
-                     │ Pre-filtered Clean Candidates
+                     │ Pre-filtered Candidates
                      ▼
 ┌─────────────────────────────────────────┐
 │ 2. Pluggable Reasoning Layer (LLM)      │
@@ -388,128 +362,127 @@
 └────────────────────┬────────────────────┘
                      │ Pydantic Structured Output
                      ▼
-[ purchase_orders & alerts Tables ] ──▶ [ Tracer ]</div>
+[ purchase_orders & alerts Tables ]</div>
         <div class="card">
-          <h3>⚙️ How the Pipeline Executes</h3>
+          <h3>🤖 Coding Agent Acceleration</h3>
           <ul>
-            <li><strong><code>DemandAnalyzer</code></strong>: Explodes BOM, nets inventory, subtracts in-flight POs, and computes material deadlines with zero float errors.</li>
-            <li><strong><code>PolicyEngine</code></strong>: Pre-filters unapproved or uncertified vendors before the LLM sees them—preventing policy leaks by construction.</li>
-            <li><strong><code>ProcurementPlanner</code></strong>: Assembles enriched context and prompts the LLM for multi-objective optimization.</li>
-            <li><strong><code>_plan_deterministic</code> Fallback</strong>: Seamless offline execution if cloud API drops.</li>
+            <li><strong>Rapid Core Synthesis</strong>: Built <code>DemandAnalyzer</code> and <code>PolicyEngine</code> via Coding Agent with complete unit test suites.</li>
+            <li><strong>0% Arithmetic Hallucination</strong>: BOM multiplication, stock netting, and date math are 100% exact.</li>
+            <li><strong>Offline Fallback</strong>: <code>_plan_deterministic()</code> ensures zero factory downtime if cloud API drops.</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 4: Step 3 - Pluggable Open Model Strategy -->
+    <!-- SLIDE 4: Step 3 - Pluggable Open Model -->
     <div class="slide" id="slide-4">
-      <div class="slide-tag">Step 3: Pluggable AI Stack Strategy</div>
-      <h2 class="slide-title">Zero Vendor Lock-In & Reflection Model Ready</h2>
-      <p class="slide-subtitle">Designing an enterprise-grade factory interface compatible with cloud APIs and local open weights.</p>
+      <div class="slide-tag">Step 3: Pluggable AI Stack</div>
+      <h2 class="slide-title">Reflection Open Model Ready</h2>
+      <p class="slide-subtitle">Zero vendor lock-in. 1 environment variable to switch from cloud to local open weights.</p>
       
       <div class="grid-3">
         <div class="card card-highlight">
-          <h3>🔌 Factory Pattern (`src/llm/`)</h3>
-          <p>Decoupled provider interface. Switch between Google Gemini cloud and Reflection-70B local open weights via 1 environment variable:</p>
-          <code style="font-family:var(--mono); color:#60a5fa; display:block; margin-top:8px;">LLM_PROVIDER=open_model</code>
+          <h3>🔌 Factory Pattern</h3>
+          <p><code>src/llm/factory.py</code> decouples provider logic:</p>
+          <code style="font-family:var(--mono); color:#60a5fa; display:block; margin-top:6px;">LLM_PROVIDER=open_model</code>
         </div>
         <div class="card card-emerald">
-          <h3>🛡️ Native Type Enforcement</h3>
-          <p>Using native SDK structured output (<code>response_schema=ProcurementPlanSchema</code>), guaranteeing <strong>zero JSON syntax errors or schema drift</strong>.</p>
+          <h3>🛡️ Native Type Safety</h3>
+          <p>Native SDK structured outputs (<code>response_schema</code>) guarantee <strong>0% JSON syntax crashes</strong>.</p>
         </div>
         <div class="card">
           <h3>📊 Blackbox Telemetry</h3>
-          <p>Tracks prompt tokens, completion tokens, internal <strong>Thinking Tokens (`thoughts_token_count`)</strong>, and latencies per step.</p>
+          <p>Logs prompt tokens, completion tokens, <strong>Thinking Tokens</strong>, and latency per step.</p>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 5: Step 4 - Evaluation Harness & 11 Scenarios -->
+    <!-- SLIDE 5: Step 4 - 11 Scenarios -->
     <div class="slide" id="slide-5">
-      <div class="slide-tag">Step 4: Rigorous Evaluation Harness</div>
-      <h2 class="slide-title">Building the Dual Evaluation Engine</h2>
-      <p class="slide-subtitle">60-Point Mathematical & Policy Verification + 40-Point Independent LLM-as-a-Judge Audit</p>
+      <div class="slide-tag">Step 4: Evaluation Scope</div>
+      <h2 class="slide-title">11-Scenario Benchmark Suite</h2>
+      <p class="slide-subtitle">6 Official Canonical cases + 5 Synthetic robustness stress tests.</p>
       
       <div class="grid-2">
         <div class="card">
-          <h3>📑 Part I: Official Canonical Scenarios (01 – 06)</h3>
+          <h3>📑 Official Canonical Suite (01–06)</h3>
           <ul>
-            <li><strong>01. Baseline Planning</strong>: 4 orders, 11 shortfalls, magnet dual-split.</li>
-            <li><strong>02. Partial Procurement</strong>: In-flight PO netting (`EXIST-001..004`).</li>
-            <li><strong>03. Tight Timeline</strong>: Rush customer order PO-5005 & lead time compression.</li>
-            <li><strong>04. Low Inventory</strong>: Multi-vendor depleted stock recovery.</li>
-            <li><strong>05. Competing Demand</strong>: Shared component contention across 4 orders.</li>
-            <li><strong>06. Simple Single Order</strong>: Baseline single product path.</li>
+            <li><strong>01. Baseline</strong>: 4 orders, 11 shortfalls, magnet split.</li>
+            <li><strong>02. Partial Procurement</strong>: In-flight PO netting.</li>
+            <li><strong>03. Tight Timeline</strong>: Rush order PO-5005 lead time.</li>
+            <li><strong>04. Low Inventory</strong>: Multi-vendor stockout recovery.</li>
+            <li><strong>05. Competing Demand</strong>: Multi-order shared contention.</li>
+            <li><strong>06. Simple Single Order</strong>: Baseline single order.</li>
           </ul>
         </div>
         <div class="card card-highlight">
-          <h3>🛡️ Part II: Synthetic Robustness Suite (07 – 11)</h3>
+          <h3>🛡️ Synthetic Stress Suite (07–11)</h3>
           <ul>
-            <li><strong>07. Sole-Source Monopoly</strong>: Specialized single-supplier sensor.</li>
-            <li><strong>08. Budget Cap Escalation</strong>: $110k+ multi-tier VP approval.</li>
-            <li><strong>09. Date Boundary</strong>: Expired air freight memo (Oct 1 snapshot).</li>
-            <li><strong>10. Extreme MOQ Discrepancy</strong>: 500 MOQ vs 8 unit demand.</li>
-            <li><strong>11. Unapproved Vendor Trap</strong>: 70% cheaper blacklisted supplier.</li>
+            <li><strong>07. Sole-Source Monopoly</strong>: 1-supplier sensor.</li>
+            <li><strong>08. Budget Escalation</strong>: $110k+ VP sign-off.</li>
+            <li><strong>09. Date Boundary</strong>: Expired air freight memo.</li>
+            <li><strong>10. Large MOQ Disparity</strong>: 500 MOQ vs 8 need.</li>
+            <li><strong>11. Blacklist Trap</strong>: -70% unapproved vendor.</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 6: Step 5 - Diagnosing v1.0 Loss Patterns -->
+    <!-- SLIDE 6: Step 5 - Loss Taxonomy -->
     <div class="slide" id="slide-6">
-      <div class="slide-tag">Step 5: Error Diagnosis & Loss Taxonomy</div>
-      <h2 class="slide-title">Diagnosing the Baseline Failure Modes (v1.0)</h2>
-      <p class="slide-subtitle">Documenting failure modes systematically in REP-EVAL-2026-001 rather than making ad-hoc fixes.</p>
+      <div class="slide-tag">Step 5: Error Diagnosis</div>
+      <h2 class="slide-title">Baseline Loss Taxonomy (v1.0)</h2>
+      <p class="slide-subtitle">Systematic root cause analysis from REP-EVAL-2026-001 (Baseline: 94.7%).</p>
       
       <div class="grid-3">
         <div class="card card-amber">
-          <h3>Pattern 1: MOQ Excess Holding Risk</h3>
-          <p>In Scenario 10 (78.0%), agent ordered 500 units for 8 needed, but omitted an alert for the <strong>$28,536 excess inventory carrying cost</strong>.</p>
+          <h3>1. MOQ Surplus Risk</h3>
+          <p><strong>Scenario 10 (78.0%)</strong>: Ordered 500 units for 8 needed, but missed <strong>$28,536 excess inventory alert</strong>.</p>
         </div>
         <div class="card card-amber">
-          <h3>Pattern 2: Multi-Order Delay Aggregation</h3>
-          <p>In Scenario 05 (89.5%), agent flagged the earliest delivery shortfall, but failed to break down <strong>per-order delivery impacts across all 4 POs</strong>.</p>
+          <h3>2. Multi-Order Contention</h3>
+          <p><strong>Scenario 05 (89.5%)</strong>: Flagged earliest delay, but missed <strong>itemizing all 4 customer PO IDs</strong>.</p>
         </div>
         <div class="card card-amber">
-          <h3>Pattern 3: Implicit Compliance Logging</h3>
-          <p>Documented sole-source justifications inside PO rationale fields, but omitted standalone Section 4 operational risk alerts.</p>
+          <h3>3. Sole-Source Alerting</h3>
+          <p><strong>Scenario 07 (94.5%)</strong>: Justified in PO text, but missed <strong>standalone Section 4 operational alert</strong>.</p>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 7: Step 6 - Hill-Climbing via Prompt Registry -->
+    <!-- SLIDE 7: Step 6 - Hill-Climbing -->
     <div class="slide" id="slide-7">
-      <div class="slide-tag">Step 6: Data-Driven Hill-Climbing</div>
-      <h2 class="slide-title">Systematic Prompt Versioning (v1.0 ➔ v1.1)</h2>
-      <p class="slide-subtitle">Deploying targeted prompt directives in `src/llm/prompts.py` elevating score from 94.7% to 99.4%.</p>
+      <div class="slide-tag">Step 6: Hill-Climbing</div>
+      <h2 class="slide-title">Prompt Versioning (v1.0 ➔ v1.1)</h2>
+      <p class="slide-subtitle">Injected 7 explicit Alert directives in `src/llm/prompts.py` elevating score to 99.4%.</p>
       
       <div class="grid-2">
         <div class="card">
-          <h3 style="color:#f87171;">📉 v1.0 Baseline Prompt (94.7%)</h3>
+          <h3 style="color:#f87171;">📉 v1.0 Baseline (94.7%)</h3>
           <ul>
-            <li>Basic procurement instructions without explicit risk taxonomies.</li>
+            <li>Basic procurement prompt.</li>
             <li>Scenario 10 (Large MOQ): <strong>78.0%</strong></li>
             <li>Scenario 05 (Competing Demand): <strong>89.5%</strong></li>
-            <li>Scenario 07 (Sole Source): <strong>94.5%</strong></li>
+            <li>Canonical Suite: <strong>97.3%</strong></li>
           </ul>
         </div>
         <div class="card card-emerald">
-          <h3 style="color:#34d399;">🚀 v1.1 Hill-Climbed Prompt (99.4%)</h3>
+          <h3 style="color:#34d399;">🚀 v1.1 Hill-Climbed (99.4%)</h3>
           <ul>
-            <li>Injected 7 explicit Alert synthesis directives (MOQ Surplus, Multi-Order IDs, Hazmat, Sole Source, VP Approvals).</li>
-            <li>Scenario 10: 78.0% ➔ <strong>100.0% (+22.0 pts)</strong></li>
-            <li>Scenario 05: 89.5% ➔ <strong>100.0% (+10.5 pts)</strong></li>
-            <li>Canonical Suite Score: <strong>97.3% ➔ 99.6% (597.5/600)</strong></li>
+            <li>7 explicit risk alert directives.</li>
+            <li>Scenario 10 (Large MOQ): <strong>100.0% (+22.0)</strong></li>
+            <li>Scenario 05 (Competing Demand): <strong>100.0% (+10.5)</strong></li>
+            <li>Canonical Suite: <strong>99.6% (597.5/600)</strong></li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 8: Step 7 - Multi-Model Pareto Frontier Benchmark -->
+    <!-- SLIDE 8: Step 7 - Multi-Model Leaderboard -->
     <div class="slide" id="slide-8">
-      <div class="slide-tag">Step 7: Empirical Model Exploration</div>
-      <h2 class="slide-title">Multi-Model Pareto Frontier (66 Total Runs)</h2>
-      <p class="slide-subtitle">Quantifying the trade-off between Thinking Tokens, Latency, and Compliance Score.</p>
+      <div class="slide-tag">Step 7: Leaderboard Benchmark</div>
+      <h2 class="slide-title">Multi-Model Leaderboard Matrix</h2>
+      <p class="slide-subtitle">Built automated `leaderboard.py` runner evaluating 66 model & persona runs.</p>
       
       <div class="card" style="padding:0; overflow:hidden;">
         <table>
@@ -521,7 +494,6 @@
               <th>Total Score</th>
               <th>Score %</th>
               <th>Thinking Tokens</th>
-              <th>Total Tokens</th>
               <th>Wall Time</th>
             </tr>
           </thead>
@@ -533,8 +505,7 @@
               <td class="score-green">1093.5 / 1100</td>
               <td><strong>99.4%</strong></td>
               <td>44,846</td>
-              <td>173,724</td>
-              <td>44.7s ⚡</td>
+              <td><strong>44.7s ⚡</strong></td>
             </tr>
             <tr>
               <td><span class="pill" style="background:#e0e7ff; color:#3730a3;">2</span></td>
@@ -543,8 +514,7 @@
               <td class="score-green">1091.0 / 1100</td>
               <td><strong>99.2%</strong></td>
               <td>44,270</td>
-              <td>174,294</td>
-              <td>29.1s</td>
+              <td><strong>29.1s</strong></td>
             </tr>
             <tr>
               <td><span class="pill" style="background:#f3e8ff; color:#6b21a8;">3</span></td>
@@ -553,88 +523,75 @@
               <td class="score-green">1088.0 / 1100</td>
               <td><strong>98.9%</strong></td>
               <td>131,715</td>
-              <td>260,764</td>
               <td>154.1s</td>
             </tr>
             <tr>
               <td>4</td>
-              <td>gemini-3.1-pro-preview</td>
-              <td>strict_compliance</td>
-              <td class="score-green">1083.5 / 1100</td>
-              <td><strong>98.5%</strong></td>
-              <td>120,444</td>
-              <td>252,557</td>
-              <td>164.5s</td>
-            </tr>
-            <tr>
-              <td>5</td>
               <td>gemini-3.5-flash-lite</td>
               <td>balanced</td>
               <td class="score-green">1073.8 / 1100</td>
               <td><strong>97.6%</strong></td>
               <td>5,468</td>
-              <td>135,967</td>
-              <td>29.0s 🚀</td>
+              <td><strong>29.0s 🚀</strong></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- SLIDE 9: Step 8 - High-Speed Live Demo & Observability -->
+    <!-- SLIDE 9: Step 8 - Live Demo & Sub-15s Harness -->
     <div class="slide" id="slide-9">
-      <div class="slide-tag">Step 8: Operational Readiness & Telemetry</div>
-      <h2 class="slide-title">Sub-15s Parallel Benchmark & Blackbox Tracing</h2>
-      <p class="slide-subtitle">Observability flight recorder capturing every prompt, response, and state mutation.</p>
+      <div class="slide-tag">Step 8: Live Demonstration</div>
+      <h2 class="slide-title">Sub-15s Parallel Benchmark Demo</h2>
+      <p class="slide-subtitle">High-throughput evaluation harness and trajectory flight recorder.</p>
       
       <div class="grid-2">
         <div class="card card-highlight">
-          <h3>⚡ Live Terminal Execution</h3>
-          <p style="margin-bottom:12px;">Run all 11 scenarios in parallel with live LLM Judge:</p>
+          <h3>⚡ Terminal Demo Commands</h3>
+          <p style="margin-bottom:10px;">Run all 11 scenarios in parallel (~14s):</p>
           <code style="font-family:var(--mono); color:#34d399; font-size:14px;">python3 run_all_and_eval.py</code>
-          <p style="margin-top:16px; margin-bottom:12px;">Run multi-model benchmark matrix:</p>
+          <p style="margin-top:14px; margin-bottom:10px;">Run multi-model comparison matrix:</p>
           <code style="font-family:var(--mono); color:#60a5fa; font-size:14px;">python3 leaderboard.py</code>
         </div>
         <div class="card">
           <h3>📜 Trajectory Flight Recorder</h3>
           <ul>
-            <li><strong>Raw Prompt & Response Audit</strong>: Preserved in <code>trajectories/</code>.</li>
-            <li><strong>Per-Step State Capturing</strong>: Exact tracking of stock netting and pre-filtered candidate pools.</li>
-            <li><strong>Live Dashboard</strong>: Real-time visual progress at <code>reports/index.html</code>.</li>
+            <li><strong>Complete Auditability</strong>: Raw prompts & model completions saved in <code>trajectories/</code>.</li>
+            <li><strong>Live Telemetry</strong>: Visual dashboard at <code>reports/index.html</code>.</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 10: Step 9 - Production Roadmap -->
+    <!-- SLIDE 10: Step 9 - Production Scaling -->
     <div class="slide" id="slide-10">
       <div class="slide-tag">Step 9: Enterprise Evolution</div>
-      <h2 class="slide-title">Production Scaling & Multi-Agent Roadmap</h2>
-      <p class="slide-subtitle">Bridging from interim prototype to real-world manufacturing plant ERP integration.</p>
+      <h2 class="slide-title">Production Scaling Roadmap</h2>
+      <p class="slide-subtitle">Deploying into real-world factory ERP (SAP / NetSuite).</p>
       
       <div class="grid-3">
         <div class="card card-highlight">
-          <h3>1. Multi-Agent Supervisor</h3>
-          <p>Decompose into specialized sub-agents: <em>Sourcing Specialist</em>, <em>Compliance Officer</em>, and <em>Logistics Auditor</em> under a Supervisor Agent.</p>
+          <h3>1. Multi-Agent Team</h3>
+          <p>Specialized sub-agents (<em>Sourcing</em>, <em>Compliance</em>, <em>Logistics</em>) under an Executive Supervisor.</p>
         </div>
         <div class="card card-emerald">
-          <h3>2. Human-in-the-Loop Gates</h3>
-          <p>Auto-commit routine POs &lt;$50k. Escalate POs &gt;$150k or Sole-Source exceptions to Plant Managers via Slack/Email approval hooks.</p>
+          <h3>2. HITL Approvals</h3>
+          <p>Auto-commit POs &lt;$50k. Escalate POs &gt;$150k or Sole-Source exceptions to Plant Managers via Slack.</p>
         </div>
         <div class="card">
-          <h3>3. Event-Driven ERP Pipeline</h3>
-          <p>Integrate Kafka/SAP event streams to trigger autonomous re-planning when production schedules or warehouse stocks mutate.</p>
+          <h3>3. Event-Driven ERP</h3>
+          <p>Kafka event streaming triggering instant re-planning when warehouse stocks mutate.</p>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 11: Final Scoreboard & Operational Alignment -->
+    <!-- SLIDE 11: Final Scoreboard & Conclusion -->
     <div class="slide" id="slide-11">
-      <div class="slide-tag">Milestone Summary & Scoreboard</div>
-      <h2 class="slide-title">Final Scoreboard & Operational Next Steps</h2>
-      <p class="slide-subtitle">Delivering Autonomous, Policy-Compliant Procurement Autonomy for Apex Manufacturing</p>
+      <div class="slide-tag">Final Milestone Scoreboard</div>
+      <h2 class="slide-title">Autonomous Procurement Verified</h2>
+      <p class="slide-subtitle">99.6% Canonical Accuracy & Production Readiness for Apex Manufacturing</p>
       
-      <div class="grid-4" style="margin-bottom: 22px;">
+      <div class="grid-4" style="margin-bottom: 20px;">
         <div class="card card-emerald">
           <div class="stat-label">Canonical Score</div>
           <div class="stat-number" style="color: #34d399;">99.6%</div>
@@ -648,7 +605,7 @@
         <div class="card">
           <div class="stat-label">Parallel Wall Time</div>
           <div class="stat-number">13.9s</div>
-          <p>⚡ 11 Scenarios in Parallel</p>
+          <p>⚡ 11 Scenarios Parallel</p>
         </div>
         <div class="card card-emerald">
           <div class="stat-label">Math & ASL Errors</div>
@@ -659,19 +616,18 @@
 
       <div class="grid-2">
         <div class="card card-emerald">
-          <h3>✅ Engineering Deliverables Complete</h3>
+          <h3>✅ Engineering Deliverables</h3>
           <ul>
-            <li><strong>Working Prototype</strong> running against any SQLite scenario database.</li>
-            <li><strong>99.6% Canonical / 99.4% Benchmark Accuracy</strong> with 0% math/policy errors.</li>
-            <li><strong>Pluggable Architecture</strong> ready for Reflection AI open models.</li>
-            <li><strong>Automated 13.9s Parallel Benchmark & Trajectory Telemetry</strong>.</li>
+            <li><strong>Working Prototype</strong> running against any SQLite database.</li>
+            <li><strong>Pluggable Architecture</strong> ready for Reflection Open Model.</li>
+            <li><strong>Sub-15s Parallel Benchmark & Trajectory Telemetry</strong>.</li>
           </ul>
         </div>
         <div class="card card-highlight">
-          <h3>💬 Alignment Questions for Apex Operations</h3>
+          <h3>💬 Alignment Discussion</h3>
           <ul>
-            <li>1. Preferred ERP integration protocol (REST vs Kafka event stream)?</li>
-            <li>2. Granularity of Human-in-the-Loop escalation thresholds?</li>
+            <li>1. Preferred ERP protocol (REST vs Kafka event stream)?</li>
+            <li>2. Human-in-the-Loop escalation threshold granularity?</li>
             <li>3. On-premise Reflection model infrastructure sizing?</li>
           </ul>
         </div>
