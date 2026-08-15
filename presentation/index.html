@@ -21,7 +21,6 @@
       --blue-bg: rgba(59, 130, 246, 0.12);
       --amber: #f59e0b;
       --amber-bg: rgba(245, 158, 11, 0.12);
-      --purple: #8b5cf6;
       --font: 'Plus Jakarta Sans', sans-serif;
       --mono: 'JetBrains Mono', monospace;
     }
@@ -273,7 +272,7 @@
     </div>
     <div class="slide-nav">
       <button class="btn" onclick="prevSlide()">◀ Prev</button>
-      <span class="counter" id="slideCounter">1 / 11</span>
+      <span class="counter" id="slideCounter">1 / 10</span>
       <button class="btn btn-primary" onclick="nextSlide()">Next ▶</button>
     </div>
   </div>
@@ -281,17 +280,17 @@
   <!-- Viewport -->
   <div class="viewport">
 
-    <!-- SLIDE 1: Title & 4-Phase Architecture Framework -->
+    <!-- SLIDE 1: Title & 3-Phase Framework -->
     <div class="slide active" id="slide-1">
-      <div class="slide-tag">Forward Deployed Engineering Methodology</div>
+      <div class="slide-tag">Forward Deployed Engineering Review</div>
       <h1 class="slide-title">Autonomous AI Procurement Agent</h1>
       <p class="slide-subtitle">Engineering Approach, Evaluation Pipeline & Multi-Model Benchmark</p>
       
-      <div class="grid-4">
+      <div class="grid-3">
         <div class="card card-highlight">
           <div class="stat-label">Phase 01</div>
           <h3>First Principles</h3>
-          <p>Why pure LLMs fail in manufacturing & isolating math from reasoning.</p>
+          <p>Why pure LLMs fail in manufacturing & isolating arithmetic from reasoning.</p>
         </div>
         <div class="card card-highlight">
           <div class="stat-label">Phase 02</div>
@@ -302,11 +301,6 @@
           <div class="stat-label">Phase 03</div>
           <h3>Evaluation & Leaderboard</h3>
           <p>LLM Judge, Trajectory logging, Loss analysis, and Prompt tuning matrix.</p>
-        </div>
-        <div class="card card-highlight">
-          <div class="stat-label">Phase 04</div>
-          <h3>Production Roadmap</h3>
-          <p>Multi-Agent Supervisor, Human-in-the-Loop, and ERP integration.</p>
         </div>
       </div>
     </div>
@@ -563,30 +557,8 @@
       </div>
     </div>
 
-    <!-- SLIDE 10: Step 9 - Production Scaling -->
+    <!-- SLIDE 10: Final Scoreboard & Conclusion -->
     <div class="slide" id="slide-10">
-      <div class="slide-tag">Phase 4: Production Roadmap</div>
-      <h2 class="slide-title">Production Scaling Roadmap</h2>
-      <p class="slide-subtitle">Deploying into real-world factory ERP (SAP / NetSuite).</p>
-      
-      <div class="grid-3">
-        <div class="card card-highlight">
-          <h3>1. Multi-Agent Team</h3>
-          <p>Specialized sub-agents (<em>Sourcing</em>, <em>Compliance</em>, <em>Logistics</em>) under an Executive Supervisor.</p>
-        </div>
-        <div class="card card-emerald">
-          <h3>2. HITL Approvals</h3>
-          <p>Auto-commit POs &lt;$50k. Escalate POs &gt;$150k or Sole-Source exceptions to Plant Managers via Slack.</p>
-        </div>
-        <div class="card">
-          <h3>3. Event-Driven ERP</h3>
-          <p>Kafka event streaming triggering instant re-planning when warehouse stocks mutate.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- SLIDE 11: Final Scoreboard & Conclusion -->
-    <div class="slide" id="slide-11">
       <div class="slide-tag">Final Milestone Scoreboard</div>
       <h2 class="slide-title">Autonomous Procurement Verified</h2>
       <p class="slide-subtitle">99.6% Canonical Accuracy & Production Readiness for Apex Manufacturing</p>
@@ -616,17 +588,17 @@
 
       <div class="grid-2">
         <div class="card card-emerald">
-          <h3>✅ Engineering Deliverables</h3>
+          <h3>✅ Engineering Deliverables Complete</h3>
           <ul>
-            <li><strong>Working Prototype</strong> running against any SQLite database.</li>
+            <li><strong>Working Prototype</strong> running against any SQLite scenario database.</li>
             <li><strong>Pluggable Architecture</strong> ready for Reflection Open Model.</li>
             <li><strong>Sub-15s Parallel Benchmark & Trajectory Telemetry</strong>.</li>
           </ul>
         </div>
         <div class="card card-highlight">
-          <h3>💬 Alignment Discussion</h3>
+          <h3>💬 Alignment Questions for Apex Operations</h3>
           <ul>
-            <li>1. Preferred ERP protocol (REST vs Kafka event stream)?</li>
+            <li>1. Preferred ERP integration protocol (REST vs Kafka event stream)?</li>
             <li>2. Human-in-the-Loop escalation threshold granularity?</li>
             <li>3. On-premise Reflection model infrastructure sizing?</li>
           </ul>
@@ -638,7 +610,7 @@
 
   <script>
     let currentSlide = 1;
-    const totalSlides = 11;
+    const totalSlides = 10;
 
     function updateSlide() {
       document.querySelectorAll('.slide').forEach((s, idx) => {
