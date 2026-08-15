@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Procurement AI - Benchmark & Leaderboard Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0b0f19;
+      --bg-surface: #111827;
+      --bg-card: #1f2937;
+      --bg-card-hover: #263345;
+      --border-color: #374151;
+      --border-accent: #4b5563;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --text-dim: #6b7280;
+      --accent-emerald: #10b981;
+      --accent-emerald-bg: rgba(16, 185, 129, 0.12);
+      --accent-blue: #3b82f6;
+      --accent-blue-bg: rgba(59, 130, 246, 0.12);
+      --accent-amber: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      padding: 32px 24px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .meta-badges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+
+    .badge-primary {
+      background: var(--accent-emerald-bg);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: #34d399;
+    }
+
+    .badge-blue {
+      background: var(--accent-blue-bg);
+      border-color: rgba(59, 130, 246, 0.4);
+      color: #60a5fa;
+    }
+
+    /* Key Metric Cards */
+    .grid-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+
+    .stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card .label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .stat-card .value {
+      font-size: 36px;
+      font-weight: 800;
+      color: #fff;
+      margin: 8px 0 4px;
+      font-family: var(--font-mono);
+      letter-spacing: -0.03em;
+    }
+
+    .stat-card .subtext {
+      font-size: 13px;
+      color: #34d399;
+      font-weight: 500;
+    }
+
+    /* Section Styling */
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: -8px;
+      margin-bottom: 20px;
+    }
+
+    /* Table */
+    .table-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 36px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    thead {
+      background: rgba(31, 41, 55, 0.8);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      padding: 14px 18px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+
+    td {
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(55, 65, 81, 0.5);
+    }
+
+    tbody tr:hover {
+      background: var(--bg-card);
+    }
+
+    .rank-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+    }
+
+    .rank-1 { background: #fef3c7; color: #92400e; border-color: #f59e0b; }
+    .rank-2 { background: #e0e7ff; color: #3730a3; border-color: #818cf8; }
+    .rank-3 { background: #f3e8ff; color: #6b21a8; border-color: #c084fc; }
+
+    .score-badge {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: #34d399;
+    }
+
+    .mono-cell {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: #d1d5db;
+    }
+
+    /* Scenario Card Grid */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 18px;
+      margin-bottom: 36px;
+    }
+
+    .scenario-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .scenario-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-accent);
+    }
+
+    .scenario-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .scenario-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .scenario-score {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--accent-emerald-bg);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .scenario-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .progress-bar-bg {
+      height: 6px;
+      background: var(--bg-card);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #34d399);
+      border-radius: 3px;
+    }
+
+    .scenario-footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+    }
+
+    /* Prompt Evolution Banner */
+    .evolution-box {
+      background: linear-gradient(135deg, rgba(31, 41, 55, 0.9), rgba(17, 24, 39, 0.9));
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 36px;
+    }
+
+    .evolution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .evolution-grid { grid-template-columns: 1fr; }
+    }
+
+    .evo-col {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .evo-col h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .evo-col ul {
+      padding-left: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .evo-col li {
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <h1>🏭 Apex Procurement AI Agent</h1>
+        <p>Autonomous Supply Chain Sourcing, Policy Compliance & Risk Management Benchmark</p>
+      </div>
+      <div class="meta-badges">
+        <span class="badge badge-primary">⚡ Prompt Version: <strong>v1.1 (Alert-Enriched)</strong></span>
+        <span class="badge badge-blue">🤖 Agent Model: <strong>gemini-3.7-flash</strong></span>
+        <span class="badge">⚖️ Judge Model: <strong>gemini-3.7-flash</strong></span>
+      </div>
+    </header>
+
+    <!-- Key Metrics Grid -->
+    <div class="grid-stats">
+      <div class="stat-card">
+        <div class="label">Overall Benchmark Score</div>
+        <div class="value">99.4%</div>
+        <div class="subtext">▲ +4.7% gain via v1.1 Hill-Climbing</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Official Canonical Suite</div>
+        <div class="value">99.6%</div>
+        <div class="subtext">597.5 / 600.0 points (Scenarios 01-06)</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Benchmark Wall Time</div>
+        <div class="value">13.98s</div>
+        <div class="subtext">⚡ 11 Scenarios Parallel Execution</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Flawless Scenarios (100%)</div>
+        <div class="value">8 / 11</div>
+        <div class="subtext">Zero math & zero policy errors</div>
+      </div>
+    </div>
+
+    <!-- Leaderboard Table -->
+    <div class="section-title">🏆 Multi-Model & System Persona Leaderboard (66 Total Evaluations)</div>
+    <div class="section-desc">Comparison across model tiers (Flash / Pro / Lite) and system prompts under versioned prompt architecture.</div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Model Name</th>
+            <th>System Persona</th>
+            <th>Prompt Ver</th>
+            <th>Total Score</th>
+            <th>Score %</th>
+            <th>Thinking Tokens</th>
+            <th>Total Tokens</th>
+            <th>Latency</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rank-pill rank-1">1</span></td>
+            <td><strong>gemini-3.7-flash</strong></td>
+            <td>strict_compliance</td>
+            <td><span class="badge badge-primary">v1.1</span></td>
+            <td class="score-badge">1093.5 / 1100</td>
+            <td><strong>99.4%</strong></td>
+            <td class="mono-cell">44,846</td>
+            <td class="mono-cell">173,724</td>
+            <td class="mono-cell">44.7s</td>
+          </tr>
+          <tr>
+            <td><span class="rank-pill rank-2">2</span></td>
+            <td><strong>gemini-3.7-flash</strong></td>
+            <td>balanced</td>
+            <td><span class="badge badge-primary">v1.1</span></td>
+            <td class="score-badge">1091.0 / 1100</td>
+            <td><strong>99.2%</strong></td>
+            <td class="mono-cell">44,270</td>
+            <td class="mono-cell">174,294</td>
+            <td class="mono-cell">29.1s</td>
+          </tr>
+          <tr>
+            <td><span class="rank-pill rank-3">3</span></td>
+            <td><strong>gemini-3.1-pro-preview</strong></td>
+            <td>balanced</td>
+            <td><span class="badge badge-primary">v1.1</span></td>
+            <td class="score-badge">1088.0 / 1100</td>
+            <td><strong>98.9%</strong></td>
+            <td class="mono-cell">131,715</td>
+            <td class="mono-cell">260,764</td>
+            <td class="mono-cell">154.1s</td>
+          </tr>
+          <tr>
+            <td><span class="rank-pill">4</span></td>
+            <td>gemini-3.1-pro-preview</td>
+            <td>strict_compliance</td>
+            <td><span class="badge badge-primary">v1.1</span></td>
+            <td class="score-badge">1083.5 / 1100</td>
+            <td><strong>98.5%</strong></td>
+            <td class="mono-cell">120,444</td>
+            <td class="mono-cell">252,557</td>
+            <td class="mono-cell">164.5s</td>
+          </tr>
+          <tr>
+            <td><span class="rank-pill">5</span></td>
+            <td>gemini-3.5-flash-lite</td>
+            <td>balanced</td>
+            <td><span class="badge badge-primary">v1.1</span></td>
+            <td class="score-badge">1073.8 / 1100</td>
+            <td><strong>97.6%</strong></td>
+            <td class="mono-cell">5,468</td>
+            <td class="mono-cell">135,967</td>
+            <td class="mono-cell">29.0s</td>
+          </tr>
+          <tr>
+            <td><span class="rank-pill">6</span></td>
+            <td>gemini-3.5-flash-lite</td>
+            <td>strict_compliance</td>
+            <td><span class="badge badge-primary">v1.1</span></td>
+            <td class="score-badge">1065.6 / 1100</td>
+            <td><strong>96.9%</strong></td>
+            <td class="mono-cell">5,928</td>
+            <td class="mono-cell">137,054</td>
+            <td class="mono-cell">22.9s</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Prompt Versioning Evolution Box -->
+    <div class="evolution-box">
+      <div class="section-title" style="margin-bottom: 4px; color: #60a5fa;">🔬 Prompt Hill-Climbing Optimization (v1.0 ➔ v1.1)</div>
+      <p style="font-size: 13px; color: var(--text-muted);">Root cause error resolution from <a href="v1.0_loss_pattern_analysis.md" style="color: #34d399;">REP-EVAL-2026-001</a> resulting in +4.7% score elevation.</p>
+      
+      <div class="evolution-grid">
+        <div class="evo-col">
+          <h4 style="color: #f87171;">v1.0 Baseline Prompt (94.7%)</h4>
+          <ul>
+            <li>Basic procurement instructions without explicit edge-case alert categories.</li>
+            <li>Omitted high-MOQ excess inventory carrying risk alert (Scenario 10: 78.0%).</li>
+            <li>Only flagged earliest deadline in multi-order competing demand (Scenario 05: 89.5%).</li>
+            <li>Sole-source justification documented only in PO rationale, missing standalone alert.</li>
+          </ul>
+        </div>
+        <div class="evo-col">
+          <h4 style="color: #34d399;">v1.1 Hill-Climbed Prompt (99.4%)</h4>
+          <ul>
+            <li><strong>7 Explicit Alert Directives</strong>: High-MOQ risk, multi-order IDs, Hazmat, Sole Source, and Approvals.</li>
+            <li><strong>Scenario 10 Perfection</strong>: 78.0% ➔ <strong>100.0% (Flawless)</strong> via surplus capital quantification.</li>
+            <li><strong>Scenario 05 Perfection</strong>: 89.5% ➔ <strong>100.0% (Flawless)</strong> via per-order ID breakdown.</li>
+            <li><strong>Sole-Source & Memo Alerts</strong>: 100% compliance across Section 4 and expired memo boundaries.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part I: Official Canonical Scenarios -->
+    <div class="section-title">📑 Part I: Official Assignment Canonical Scenarios (01 – 06)</div>
+    <div class="section-desc">Primary evaluation benchmark given in the official take-home assignment. (Score: <strong>99.6%</strong>)</div>
+    
+    <div class="scenario-grid">
+      <!-- Sc 01 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-name">01. Baseline Planning</div>
+          <div class="scenario-score">100.0 / 100</div>
+        </div>
+        <div class="scenario-desc">Baseline scenario with 4 production orders, 11 shortfalls, and dual-sourcing magnet 50% split.</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%;"></div></div>
+        <div class="scenario-footer"><span>Det: 60.0 / 60</span><span>Qual: 40.0 / 40</span></div>
+      </div>
+
+      <!-- Sc 02 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-name">02. Partial In-Flight Procurement</div>
+          <div class="scenario-score">97.5 / 100</div>
+        </div>
+        <div class="scenario-desc">Accounting for existing in-flight purchase orders and procuring remaining net shortfalls.</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 97.5%;"></div></div>
+        <div class="scenario-footer"><span>Det: 57.5 / 60</span><span>Qual: 40.0 / 40</span></div>
+      </div>
+
+      <!-- Sc 03 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-name">03. Urgent Tight Timeline</div>
+          <div class="scenario-score">100.0 / 100</div>
+        </div>
+        <div class="scenario-desc">Rush customer order (PO-5005) requiring schedule delay alerts and hazmat handling directives.</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%;"></div></div>
+        <div class="scenario-footer"><span>Det: 60.0 / 60</span><span>Qual: 40.0 / 40</span></div>
+      </div>
+
+      <!-- Sc 04 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-name">04. Depleted Low Inventory</div>
+          <div class="scenario-score">100.0 / 100</div>
+        </div>
+        <div class="scenario-desc">Depleted inventory across all components requiring multi-vendor PO formulation.</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%;"></div></div>
+        <div class="scenario-footer"><span>Det: 60.0 / 60</span><span>Qual: 40.0 / 40</span></div>
+      </div>
+
+      <!-- Sc 05 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-name">05. Competing Demand Pooling</div>
+          <div class="scenario-score">100.0 / 100</div>
+        </div>
+        <div class="scenario-desc">Multiple large orders contending for common components. Multi-order delay breakdown perfected in v1.1.</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%;"></div></div>
+        <div class="scenario-footer"><span>Det: 60.0 / 60</span><span>Qual: 40.0 / 40</span></div>
+      </div>
+
+      <!-- Sc 06 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-name">06. Simple Single Order</div>
+          <div class="scenario-score">100.0 / 100</div>
+        </div>
+        <div class="scenario-desc">Single order with comfortable timeline. Clean baseline validation with 0 unnecessary alerts.</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%;"></div></div>
+        <div class="scenario-footer"><span>Det: 60.0 / 60</span><span>Qual: 40.0 / 40</span></div>
+      </div>
+    </div>
+
+    <!-- Part II: Synthetic Sanity Check Suite -->
+    <div class="section-title">🛡️ Part II: Synthetic Robustness & Sanity Check Suite (07 – 11)</div>
+    <div class="section-desc">Challenging edge-case scenarios designed to sanity check boundary conditions and failure modes. (Score: <strong>99.1%</strong>)</div>
+    
+    <div class="scenario-grid">
+      <!-- Sc 07 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-name">07. Sole-Source Monopoly</div>
+          <div class="scenario-score">100.0 / 100</div>
+        </div>
+        <div class="scenario-desc">Specialized sensor available from only 1 global supplier. Section 4 sole-source alert verified.</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%;"></div></div>
+        <div class="scenario-footer"><span>Det: 60.0 / 60</span><span>Qual: 40.0 / 40</span></div>
+      </div>
+
+      <!-- Sc 08 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-name">08. Budget Cap Escalation</div>
+          <div class="scenario-score">98.5 / 100</div>
+        </div>
+        <div class="scenario-desc">Spend exceeding $110k requiring multi-tier management and VP of Operations approval escalation.</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 98.5%;"></div></div>
+        <div class="scenario-footer"><span>Det: 60.0 / 60</span><span>Qual: 38.5 / 40</span></div>
+      </div>
+
+      <!-- Sc 09 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-name">09. Expired Air Freight Memo</div>
+          <div class="scenario-score">100.0 / 100</div>
+        </div>
+        <div class="scenario-desc">Simulation date Oct 1, 2025 (Air freight MEMO-2025-072 expired Sep 30). Strict date boundary verified.</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%;"></div></div>
+        <div class="scenario-footer"><span>Det: 60.0 / 60</span><span>Qual: 40.0 / 40</span></div>
+      </div>
+
+      <!-- Sc 10 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-name">10. Extreme MOQ Disparity</div>
+          <div class="scenario-score">100.0 / 100</div>
+        </div>
+        <div class="scenario-desc">Net demand is 8 units vs MOQ of 500 units. Working capital and inventory holding cost alert verified.</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%;"></div></div>
+        <div class="scenario-footer"><span>Det: 60.0 / 60</span><span>Qual: 40.0 / 40</span></div>
+      </div>
+
+      <!-- Sc 11 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-name">11. Unapproved Vendor Trap</div>
+          <div class="scenario-score">97.0 / 100</div>
+        </div>
+        <div class="scenario-desc">70% cheaper blacklisted supplier strictly rejected with defensible audit trail and compliance alert.</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 97.0%;"></div></div>
+        <div class="scenario-footer"><span>Det: 60.0 / 60</span><span>Qual: 37.0 / 40</span></div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

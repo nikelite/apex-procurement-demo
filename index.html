@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Procurement AI - Interactive Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --surface: #111827;
+      --card: #1f2937;
+      --border: #374151;
+      --text: #f9fafb;
+      --text-muted: #9ca3af;
+      --emerald: #10b981;
+      --emerald-bg: rgba(16, 185, 129, 0.12);
+      --blue: #3b82f6;
+      --blue-bg: rgba(59, 130, 246, 0.12);
+      --font: 'Plus Jakarta Sans', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      padding: 48px 24px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1040px;
+      width: 100%;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: var(--emerald-bg);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    p.subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* Portal Grid */
+    .portal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .portal-grid { grid-template-columns: 1fr; }
+    }
+
+    .portal-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portal-card:hover {
+      transform: translateY(-4px);
+      border-color: #60a5fa;
+      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.15);
+    }
+
+    .portal-card.emerald-card:hover {
+      border-color: #34d399;
+      box-shadow: 0 12px 30px rgba(16, 185, 129, 0.15);
+    }
+
+    .card-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .card-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #60a5fa;
+    }
+
+    .emerald-card .card-action { color: #34d399; }
+
+    /* Quick Stats Bar */
+    .stats-bar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 32px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 640px) {
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .stat-val {
+      font-family: var(--mono);
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .stat-lbl {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Links List */
+    .links-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .links-title {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 640px) {
+      .links-grid { grid-template-columns: 1fr; }
+    }
+
+    .doc-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.15s;
+    }
+
+    .doc-link:hover {
+      background: #2d3748;
+      color: #60a5fa;
+      border-color: #4b5563;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="badge">🚀 Forward Deployed Engineering Take-Home Deliverable</div>
+      <h1>Apex Autonomous AI Procurement Agent</h1>
+      <p class="subtitle">Milestone Prototype, Evaluation Harness, Benchmark Leaderboard & 45-Min Technical Presentation</p>
+    </header>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+      <div>
+        <div class="stat-val" style="color: #34d399;">99.4%</div>
+        <div class="stat-lbl">Overall Benchmark</div>
+      </div>
+      <div>
+        <div class="stat-val" style="color: #60a5fa;">99.6%</div>
+        <div class="stat-lbl">Official Scenarios</div>
+      </div>
+      <div>
+        <div class="stat-val">13.9s</div>
+        <div class="stat-lbl">Parallel Wall Time</div>
+      </div>
+      <div>
+        <div class="stat-val" style="color: #34d399;">0.0%</div>
+        <div class="stat-lbl">Math & Policy Errors</div>
+      </div>
+    </div>
+
+    <!-- Main Portals -->
+    <div class="portal-grid">
+      <!-- Presentation Portal -->
+      <a href="presentation/index.html" class="portal-card">
+        <div>
+          <div class="card-icon">🎙️</div>
+          <div class="card-title">45-Min Technical Slide Deck <span>➔</span></div>
+          <div class="card-desc">Interactive web slide deck for the Tech Lead review session with embedded speaker scripts, timing, and architecture diagrams.</div>
+        </div>
+        <div class="card-action">Launch Slides Deck (Press 'N' for Notes) ➔</div>
+      </a>
+
+      <!-- Benchmark Dashboard Portal -->
+      <a href="reports/index.html" class="portal-card emerald-card">
+        <div>
+          <div class="card-icon">📊</div>
+          <div class="card-title">Benchmark & Leaderboard <span>➔</span></div>
+          <div class="card-desc">Comprehensive visual dashboard showcasing multi-model Pareto frontiers, 11-scenario breakdowns, and prompt hill-climbing telemetry.</div>
+        </div>
+        <div class="card-action">Open Benchmark Dashboard ➔</div>
+      </a>
+    </div>
+
+    <!-- Reports & Documentation -->
+    <div class="links-box">
+      <div class="links-title">📑 Technical Reports & Repository Documentation</div>
+      <div class="links-grid">
+        <a href="reports/v1.1_hill_climbing_optimization.md" class="doc-link">
+          <span>🚀</span> REP-002: v1.1 Hill-Climbing Report (99.4%)
+        </a>
+        <a href="reports/v1.0_loss_pattern_analysis.md" class="doc-link">
+          <span>📉</span> REP-001: v1.0 Loss Pattern Analysis (94.7%)
+        </a>
+        <a href="presentation/slides.md" class="doc-link">
+          <span>📝</span> Markdown Slide Blueprint & Full Script
+        </a>
+        <a href="https://github.com/nikelite/reflection-assignment" target="_blank" class="doc-link">
+          <span>💻</span> GitHub Repository (nikelite/reflection-assignment)
+        </a>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
