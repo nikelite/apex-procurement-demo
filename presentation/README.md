@@ -1,6 +1,6 @@
-# Apex Autonomous AI Procurement Agent — Presentation Deck
+# Apex Autonomous AI Procurement Agent — Technical Slide Deck
 
-This directory contains the complete presentation materials for the **45-minute Forward Deployed Engineer (FDE) Milestone Review** with Apex Manufacturing Operations and Reflection AI Tech Leads.
+This directory contains the complete presentation materials for the **Forward Deployed Engineer (FDE) Milestone Review** with Apex Manufacturing Operations and Reflection AI Tech Leads.
 
 ---
 
