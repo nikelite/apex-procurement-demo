@@ -21,6 +21,7 @@
       --blue-bg: rgba(59, 130, 246, 0.12);
       --amber: #f59e0b;
       --amber-bg: rgba(245, 158, 11, 0.12);
+      --purple: #8b5cf6;
       --font: 'Plus Jakarta Sans', sans-serif;
       --mono: 'JetBrains Mono', monospace;
     }
@@ -111,7 +112,7 @@
     .slide {
       position: absolute;
       inset: 0;
-      padding: 48px 64px;
+      padding: 40px 64px;
       display: none;
       flex-direction: column;
       justify-content: center;
@@ -133,7 +134,7 @@
     }
 
     .slide-title {
-      font-size: 36px;
+      font-size: 34px;
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.2;
@@ -142,23 +143,23 @@
     }
 
     .slide-subtitle {
-      font-size: 17px;
+      font-size: 16px;
       color: var(--text-muted);
-      margin-bottom: 28px;
-      max-width: 960px;
+      margin-bottom: 24px;
+      max-width: 980px;
     }
 
     /* Grids */
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
 
     /* Cards */
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 22px;
+      padding: 20px;
       position: relative;
     }
 
@@ -178,34 +179,34 @@
     }
 
     .card h3 {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       color: #fff;
     }
 
     .card p {
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--text-muted);
       line-height: 1.5;
     }
 
     .card ul {
       padding-left: 18px;
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--text-muted);
       line-height: 1.6;
     }
 
-    .card li { margin-bottom: 6px; }
+    .card li { margin-bottom: 5px; }
     .card strong { color: #f3f4f6; }
 
     .stat-number {
-      font-size: 38px;
+      font-size: 34px;
       font-weight: 800;
       font-family: var(--mono);
       color: #fff;
-      margin: 6px 0 2px;
+      margin: 4px 0 2px;
       letter-spacing: -0.03em;
     }
 
@@ -222,11 +223,11 @@
       background: #0a0f1d;
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 18px;
+      padding: 16px;
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 11.5px;
       color: #93c5fd;
-      line-height: 1.45;
+      line-height: 1.4;
       white-space: pre;
     }
 
@@ -242,7 +243,7 @@
 
     th {
       background: rgba(31, 41, 55, 0.8);
-      padding: 12px 14px;
+      padding: 10px 14px;
       text-align: left;
       font-weight: 700;
       font-size: 11px;
@@ -253,7 +254,7 @@
     }
 
     td {
-      padding: 12px 14px;
+      padding: 10px 14px;
       border-bottom: 1px solid rgba(55, 65, 81, 0.4);
       color: var(--text-muted);
     }
@@ -280,11 +281,11 @@
   <!-- Viewport -->
   <div class="viewport">
 
-    <!-- SLIDE 1: Title & Agenda -->
+    <!-- SLIDE 1: Title & 4-Phase Architecture Framework -->
     <div class="slide active" id="slide-1">
-      <div class="slide-tag">Forward Deployed Engineering Review</div>
+      <div class="slide-tag">Forward Deployed Engineering Methodology</div>
       <h1 class="slide-title">Autonomous AI Procurement Agent</h1>
-      <p class="slide-subtitle">Engineering Approach, Hybrid Architecture & Multi-Model Benchmark</p>
+      <p class="slide-subtitle">Engineering Approach, Evaluation Pipeline & Multi-Model Benchmark</p>
       
       <div class="grid-4">
         <div class="card card-highlight">
@@ -297,14 +298,14 @@
           <h3>Hybrid Architecture</h3>
           <p>Deterministic Python core (built via Coding Agent) + Pluggable LLM layer.</p>
         </div>
-        <div class="card card-highlight">
+        <div class="card card-emerald">
           <div class="stat-label">Phase 03</div>
-          <h3>66-Run Leaderboard</h3>
-          <p>Multi-model matrix, error taxonomy, and +4.7% prompt hill-climbing.</p>
+          <h3>Evaluation & Leaderboard</h3>
+          <p>LLM Judge, Trajectory logging, Loss analysis, and Prompt tuning matrix.</p>
         </div>
         <div class="card card-highlight">
           <div class="stat-label">Phase 04</div>
-          <h3>Production Scaling</h3>
+          <h3>Production Roadmap</h3>
           <p>Multi-Agent Supervisor, Human-in-the-Loop, and ERP integration.</p>
         </div>
       </div>
@@ -312,7 +313,7 @@
 
     <!-- SLIDE 2: Step 1 - First Principles -->
     <div class="slide" id="slide-2">
-      <div class="slide-tag">Step 1: First Principles</div>
+      <div class="slide-tag">Phase 1: First Principles</div>
       <h2 class="slide-title">Why Naive LLM Prompts Fail</h2>
       <p class="slide-subtitle">Manufacturing requires zero math error and strict policy adherence.</p>
       
@@ -338,7 +339,7 @@
 
     <!-- SLIDE 3: Step 2 - Hybrid Architecture & Coding Agent -->
     <div class="slide" id="slide-3">
-      <div class="slide-tag">Step 2: Core Architecture</div>
+      <div class="slide-tag">Phase 2: Hybrid Architecture</div>
       <h2 class="slide-title">Hybrid Deterministic-LLM Pattern</h2>
       <p class="slide-subtitle">Deterministic Core engineered via autonomous Coding Agent for 100% precision.</p>
       
@@ -349,7 +350,7 @@
          ▼
 ┌─────────────────────────────────────────┐
 │ 1. Deterministic Core (Pure Python)     │
-│   • Built via Coding Agent (0% Bug)     │
+│   • Built via Coding Agent (0% Defect)  │
 │   • DemandAnalyzer: BOM & Netting       │
 │   • PolicyEngine: ASL & Memo Filter     │
 └────────────────────┬────────────────────┘
@@ -376,7 +377,7 @@
 
     <!-- SLIDE 4: Step 3 - Pluggable Open Model -->
     <div class="slide" id="slide-4">
-      <div class="slide-tag">Step 3: Pluggable AI Stack</div>
+      <div class="slide-tag">Phase 2: Model Pluggability</div>
       <h2 class="slide-title">Reflection Open Model Ready</h2>
       <p class="slide-subtitle">Zero vendor lock-in. 1 environment variable to switch from cloud to local open weights.</p>
       
@@ -397,40 +398,63 @@
       </div>
     </div>
 
-    <!-- SLIDE 5: Step 4 - 11 Scenarios -->
+    <!-- SLIDE 5: Step 4 - Dual Evaluation Engine & LLM-as-a-Judge -->
     <div class="slide" id="slide-5">
-      <div class="slide-tag">Step 4: Evaluation Scope</div>
-      <h2 class="slide-title">11-Scenario Benchmark Suite</h2>
-      <p class="slide-subtitle">6 Official Canonical cases + 5 Synthetic robustness stress tests.</p>
+      <div class="slide-tag">Phase 3: Evaluation Engine</div>
+      <h2 class="slide-title">Dual Evaluation & LLM-as-a-Judge</h2>
+      <p class="slide-subtitle">Automated 100-point scoring framework across 11 diverse test scenarios.</p>
       
       <div class="grid-2">
-        <div class="card">
-          <h3>📑 Official Canonical Suite (01–06)</h3>
+        <div class="card card-emerald">
+          <h3>📐 Deterministic Evaluation (60 Points)</h3>
           <ul>
-            <li><strong>01. Baseline</strong>: 4 orders, 11 shortfalls, magnet split.</li>
-            <li><strong>02. Partial Procurement</strong>: In-flight PO netting.</li>
-            <li><strong>03. Tight Timeline</strong>: Rush order PO-5005 lead time.</li>
-            <li><strong>04. Low Inventory</strong>: Multi-vendor stockout recovery.</li>
-            <li><strong>05. Competing Demand</strong>: Multi-order shared contention.</li>
-            <li><strong>06. Simple Single Order</strong>: Baseline single order.</li>
+            <li><strong>Demand Coverage (15 pts)</strong>: Exact net shortfall fulfillment.</li>
+            <li><strong>MOQ Compliance (10 pts)</strong>: Valid lot sizes $\ge$ supplier MOQ.</li>
+            <li><strong>Policy & ASL Certs (15 pts)</strong>: 100% approved + ISO/UL certs.</li>
+            <li><strong>Management Memos (10 pts)</strong>: Magnet 50% split & PCB rules.</li>
+            <li><strong>Lead Time Accuracy (10 pts)</strong>: Exact date arithmetic.</li>
           </ul>
         </div>
         <div class="card card-highlight">
-          <h3>🛡️ Synthetic Stress Suite (07–11)</h3>
+          <h3>🧑‍⚖️ Qualitative LLM-as-a-Judge (40 Points)</h3>
           <ul>
-            <li><strong>07. Sole-Source Monopoly</strong>: 1-supplier sensor.</li>
-            <li><strong>08. Budget Escalation</strong>: $110k+ VP sign-off.</li>
-            <li><strong>09. Date Boundary</strong>: Expired air freight memo.</li>
-            <li><strong>10. Large MOQ Disparity</strong>: 500 MOQ vs 8 need.</li>
-            <li><strong>11. Blacklist Trap</strong>: -70% unapproved vendor.</li>
+            <li><strong>PO Rationale Quality (20 pts)</strong>: Price defensibility, supplier tier justification, and policy citations.</li>
+            <li><strong>Operational Risk Alerts (20 pts)</strong>: Delay warnings, Hazmat storage protocols, and approval escalations.</li>
+            <li><strong>Decoupled Model</strong>: Configurable via <code>LLM_JUDGE_MODEL</code> to prevent self-evaluation bias.</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 6: Step 5 - Loss Taxonomy -->
+    <!-- SLIDE 6: Step 5 - Trajectory Flight Recorder & Observability -->
     <div class="slide" id="slide-6">
-      <div class="slide-tag">Step 5: Error Diagnosis</div>
+      <div class="slide-tag">Phase 3: Trajectory Logging</div>
+      <h2 class="slide-title">Blackbox Execution Trajectories</h2>
+      <p class="slide-subtitle">Full flight recorder capturing 6 lifecycle steps and fine-grained token telemetry.</p>
+      
+      <div class="grid-2">
+        <div class="card">
+          <h3>📜 6-Step Execution Lifecycle</h3>
+          <p style="font-family:var(--mono); font-size:12px; color:#60a5fa; margin-bottom:8px;">INIT ➔ LOAD ➔ ANALYZE ➔ FILTER ➔ LLM ➔ COMMIT</p>
+          <ul>
+            <li><strong>Step-by-Step State Capturing</strong>: Initial inventory, net shortfalls, and qualified supplier pools recorded.</li>
+            <li><strong>Audit-Ready Blackbox</strong>: Raw prompt texts and unparsed model outputs preserved in <code>trajectories/</code>.</li>
+          </ul>
+        </div>
+        <div class="card card-highlight">
+          <h3>📊 Deep Token Accounting</h3>
+          <ul>
+            <li><strong>Thinking Tokens</strong>: Tracks internal reasoning CoT (<code>thoughts_token_count</code>) across Flash vs Pro.</li>
+            <li><strong>Latency Telemetry</strong>: Exact millisecond duration tracked per LLM invocation.</li>
+            <li><strong>Live Dashboard</strong>: Real-time visual progress at <code>reports/index.html</code>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: Step 6 - Loss Pattern Analysis & Taxonomy -->
+    <div class="slide" id="slide-7">
+      <div class="slide-tag">Phase 3: Loss Pattern Analysis</div>
       <h2 class="slide-title">Baseline Loss Taxonomy (v1.0)</h2>
       <p class="slide-subtitle">Systematic root cause analysis from REP-EVAL-2026-001 (Baseline: 94.7%).</p>
       
@@ -450,17 +474,17 @@
       </div>
     </div>
 
-    <!-- SLIDE 7: Step 6 - Hill-Climbing -->
-    <div class="slide" id="slide-7">
-      <div class="slide-tag">Step 6: Hill-Climbing</div>
-      <h2 class="slide-title">Prompt Versioning (v1.0 ➔ v1.1)</h2>
+    <!-- SLIDE 8: Step 7 - Prompt Tuning & Hill-Climbing -->
+    <div class="slide" id="slide-8">
+      <div class="slide-tag">Phase 3: Prompt Tuning & Hill-Climbing</div>
+      <h2 class="slide-title">Prompt Versioning Registry (v1.0 ➔ v1.1)</h2>
       <p class="slide-subtitle">Injected 7 explicit Alert directives in `src/llm/prompts.py` elevating score to 99.4%.</p>
       
       <div class="grid-2">
         <div class="card">
           <h3 style="color:#f87171;">📉 v1.0 Baseline (94.7%)</h3>
           <ul>
-            <li>Basic procurement prompt.</li>
+            <li>Basic procurement instructions without explicit risk taxonomies.</li>
             <li>Scenario 10 (Large MOQ): <strong>78.0%</strong></li>
             <li>Scenario 05 (Competing Demand): <strong>89.5%</strong></li>
             <li>Canonical Suite: <strong>97.3%</strong></li>
@@ -469,7 +493,7 @@
         <div class="card card-emerald">
           <h3 style="color:#34d399;">🚀 v1.1 Hill-Climbed (99.4%)</h3>
           <ul>
-            <li>7 explicit risk alert directives.</li>
+            <li>7 explicit risk alert directives (MOQ, Multi-Order IDs, Hazmat, Sole Source).</li>
             <li>Scenario 10 (Large MOQ): <strong>100.0% (+22.0)</strong></li>
             <li>Scenario 05 (Competing Demand): <strong>100.0% (+10.5)</strong></li>
             <li>Canonical Suite: <strong>99.6% (597.5/600)</strong></li>
@@ -478,11 +502,11 @@
       </div>
     </div>
 
-    <!-- SLIDE 8: Step 7 - Multi-Model Leaderboard -->
-    <div class="slide" id="slide-8">
-      <div class="slide-tag">Step 7: Leaderboard Benchmark</div>
-      <h2 class="slide-title">Multi-Model Leaderboard Matrix</h2>
-      <p class="slide-subtitle">Built automated `leaderboard.py` runner evaluating 66 model & persona runs.</p>
+    <!-- SLIDE 9: Step 8 - Multi-Model Leaderboard Matrix -->
+    <div class="slide" id="slide-9">
+      <div class="slide-tag">Phase 3: Multi-Model Benchmark</div>
+      <h2 class="slide-title">Multi-Model Leaderboard (66 Runs)</h2>
+      <p class="slide-subtitle">Evaluated across Gemini 3.7 Flash, 3.1 Pro, 3.5 Flash-Lite & System Personas.</p>
       
       <div class="card" style="padding:0; overflow:hidden;">
         <table>
@@ -490,7 +514,7 @@
             <tr>
               <th>Rank</th>
               <th>Model Tier</th>
-              <th>System Prompt</th>
+              <th>System Persona</th>
               <th>Total Score</th>
               <th>Score %</th>
               <th>Thinking Tokens</th>
@@ -539,33 +563,9 @@
       </div>
     </div>
 
-    <!-- SLIDE 9: Step 8 - Live Demo & Sub-15s Harness -->
-    <div class="slide" id="slide-9">
-      <div class="slide-tag">Step 8: Live Demonstration</div>
-      <h2 class="slide-title">Sub-15s Parallel Benchmark Demo</h2>
-      <p class="slide-subtitle">High-throughput evaluation harness and trajectory flight recorder.</p>
-      
-      <div class="grid-2">
-        <div class="card card-highlight">
-          <h3>⚡ Terminal Demo Commands</h3>
-          <p style="margin-bottom:10px;">Run all 11 scenarios in parallel (~14s):</p>
-          <code style="font-family:var(--mono); color:#34d399; font-size:14px;">python3 run_all_and_eval.py</code>
-          <p style="margin-top:14px; margin-bottom:10px;">Run multi-model comparison matrix:</p>
-          <code style="font-family:var(--mono); color:#60a5fa; font-size:14px;">python3 leaderboard.py</code>
-        </div>
-        <div class="card">
-          <h3>📜 Trajectory Flight Recorder</h3>
-          <ul>
-            <li><strong>Complete Auditability</strong>: Raw prompts & model completions saved in <code>trajectories/</code>.</li>
-            <li><strong>Live Telemetry</strong>: Visual dashboard at <code>reports/index.html</code>.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
     <!-- SLIDE 10: Step 9 - Production Scaling -->
     <div class="slide" id="slide-10">
-      <div class="slide-tag">Step 9: Enterprise Evolution</div>
+      <div class="slide-tag">Phase 4: Production Roadmap</div>
       <h2 class="slide-title">Production Scaling Roadmap</h2>
       <p class="slide-subtitle">Deploying into real-world factory ERP (SAP / NetSuite).</p>
       
@@ -591,7 +591,7 @@
       <h2 class="slide-title">Autonomous Procurement Verified</h2>
       <p class="slide-subtitle">99.6% Canonical Accuracy & Production Readiness for Apex Manufacturing</p>
       
-      <div class="grid-4" style="margin-bottom: 20px;">
+      <div class="grid-4" style="margin-bottom: 18px;">
         <div class="card card-emerald">
           <div class="stat-label">Canonical Score</div>
           <div class="stat-number" style="color: #34d399;">99.6%</div>
