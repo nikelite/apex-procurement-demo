@@ -157,8 +157,8 @@
     .slide-subtitle {
       font-size: 18px;
       color: var(--text-muted);
-      margin-bottom: 36px;
-      max-width: 900px;
+      margin-bottom: 32px;
+      max-width: 960px;
     }
 
     /* Layout Grids */
@@ -222,16 +222,16 @@
     .card li { margin-bottom: 6px; }
 
     .stat-number {
-      font-size: 42px;
+      font-size: 38px;
       font-weight: 800;
       font-family: var(--mono);
       color: #fff;
-      margin: 8px 0;
+      margin: 8px 0 4px;
       letter-spacing: -0.03em;
     }
 
     .stat-label {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
@@ -275,49 +275,6 @@
       color: #34d399;
     }
 
-    /* Presenter Notes Drawer */
-    .notes-drawer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #0f172a;
-      border-top: 2px solid var(--blue);
-      padding: 20px 32px;
-      transform: translateY(100%);
-      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 200;
-      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
-      max-height: 240px;
-      overflow-y: auto;
-    }
-
-    .notes-drawer.open {
-      transform: translateY(0);
-    }
-
-    .notes-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-
-    .notes-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--blue);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .notes-content {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #e2e8f0;
-      font-family: var(--font);
-    }
-
     /* Diagram visual block */
     .arch-diagram {
       background: #0a0f1d;
@@ -341,7 +298,6 @@
       <span class="pill">FDE Milestone Review</span>
     </div>
     <div class="slide-nav">
-      <button class="btn" onclick="toggleNotes()">📝 Notes (N)</button>
       <button class="btn" onclick="prevSlide()">◀ Prev</button>
       <span class="counter" id="slideCounter">1 / 11</span>
       <button class="btn btn-primary" onclick="nextSlide()">Next ▶</button>
@@ -351,37 +307,33 @@
   <!-- Viewport -->
   <div class="viewport">
 
-    <!-- SLIDE 1: Title & Executive Summary -->
+    <!-- SLIDE 1: Title & Presentation Agenda -->
     <div class="slide active" id="slide-1">
-      <div class="slide-tag">Milestone Interim Prototype Walkthrough</div>
+      <div class="slide-tag">Reflection AI &times; Apex Manufacturing</div>
       <h1 class="slide-title">Autonomous AI Procurement Agent</h1>
-      <p class="slide-subtitle">Forward Deployed Engineering Check-in for Apex Manufacturing Operations</p>
+      <p class="slide-subtitle">Forward Deployed Engineering Interim Prototype Walkthrough & Production Deployment Roadmap</p>
       
       <div class="grid-4">
-        <div class="card card-emerald">
-          <div class="stat-label">Canonical Score</div>
-          <div class="stat-number" style="color: #34d399;">99.6%</div>
-          <p>597.5 / 600.0 (Scenarios 01–06)</p>
+        <div class="card card-highlight">
+          <div class="stat-label">Section 01</div>
+          <h3 style="margin-top:8px;">Problem & Complexity</h3>
+          <p>Manual procurement bottlenecks, stock netting, and multi-tier dated memo conflicts.</p>
         </div>
         <div class="card card-highlight">
-          <div class="stat-label">Overall Benchmark</div>
-          <div class="stat-number" style="color: #60a5fa;">99.4%</div>
-          <p>1,093.5 / 1,100 (11 Scenarios)</p>
+          <div class="stat-label">Section 02</div>
+          <h3 style="margin-top:8px;">Hybrid Architecture</h3>
+          <p>Separation of Concerns: Deterministic Python core + Pluggable Open Model reasoning layer.</p>
         </div>
-        <div class="card">
-          <div class="stat-label">Parallel Wall Time</div>
-          <div class="stat-number">13.9s</div>
-          <p>⚡ 11 Scenarios Evaluated Concurrently</p>
+        <div class="card card-highlight">
+          <div class="stat-label">Section 03</div>
+          <h3 style="margin-top:8px;">Benchmarking & Hill-Climbing</h3>
+          <p>66-run multi-model matrix, error loss taxonomy, and prompt versioning optimization.</p>
         </div>
-        <div class="card card-emerald">
-          <div class="stat-label">Math & ASL Errors</div>
-          <div class="stat-number" style="color: #34d399;">0.0%</div>
-          <p>Deterministic Zero-Hallucination Core</p>
+        <div class="card card-highlight">
+          <div class="stat-label">Section 04</div>
+          <h3 style="margin-top:8px;">Production Roadmap</h3>
+          <p>Multi-Agent Supervisor, Human-in-the-Loop governance, and enterprise ERP integration.</p>
         </div>
-      </div>
-      <div class="notes-data" style="display:none;">
-        <strong>Speaker Script (00:00 - 03:00):</strong><br>
-        "Good afternoon! As a Forward Deployed Engineer at Reflection AI, I'm excited to present our working interim prototype of the Autonomous AI Procurement Agent for Apex Manufacturing. Today's session is a milestone check-in to walk through working capabilities, demonstrate our 99.6% accuracy on canonical scenarios and 99.4% across 11 stress scenarios, and confirm our production deployment roadmap."
       </div>
     </div>
 
@@ -408,10 +360,6 @@
             <li><strong>Executive Defensibility</strong>: Audit-ready rationales and actionable risk alerting for production line continuity.</li>
           </ul>
         </div>
-      </div>
-      <div class="notes-data" style="display:none;">
-        <strong>Speaker Script (03:00 - 07:00):</strong><br>
-        "Apex's planners were manually cross-referencing BOMs, warehouse inventories, and complex memos. As order volume scales, manual procurement creates line-stoppage risks. Our solution needed to read the state of the world autonomously and act decisively without human prompting."
       </div>
     </div>
 
@@ -450,10 +398,6 @@
           </ul>
         </div>
       </div>
-      <div class="notes-data" style="display:none;">
-        <strong>Speaker Script (07:00 - 12:00):</strong><br>
-        "Why didn't we just feed the raw database to an LLM prompt? Because math and hard compliance rules must never hallucinate. We designed a Hybrid Architecture: Pure Python handles MRP netting and ASL gatekeeping with 0% error, while the LLM focuses on complex multi-supplier trade-offs, dual-sourcing splits, and audit-ready documentation."
-      </div>
     </div>
 
     <!-- SLIDE 4: Pluggable AI & Open Model Compatibility -->
@@ -476,10 +420,6 @@
           <h3>📊 Telemetry & Observability</h3>
           <p>Every step traces <strong>Prompt Tokens, Completion Tokens, Thinking Tokens (thoughts_token_count), and Latency (ms)</strong> into trajectory JSON logs.</p>
         </div>
-      </div>
-      <div class="notes-data" style="display:none;">
-        <strong>Speaker Script (12:00 - 16:00):</strong><br>
-        "Per our assignment requirements, we built a pluggable model interface. When Reflection's open models are deployed on-premise, changing a single environment variable immediately routes all structured generation without touching a single line of business logic."
       </div>
     </div>
 
@@ -512,10 +452,6 @@
           </ul>
         </div>
       </div>
-      <div class="notes-data" style="display:none;">
-        <strong>Speaker Script (16:00 - 20:00):</strong><br>
-        "To prove our agent generalizes beyond the 6 base scenarios, we built 5 synthetic edge cases covering extreme supply chain crises—such as a 70% cheaper blacklisted supplier and sole-source global monopolies. This ensures the agent is ready for held-out evaluation datasets."
-      </div>
     </div>
 
     <!-- SLIDE 6: Dual Evaluation Harness -->
@@ -543,10 +479,6 @@
             <li><strong>Decoupled Model</strong>: Configurable via <code>LLM_JUDGE_MODEL</code> to prevent self-evaluation bias.</li>
           </ul>
         </div>
-      </div>
-      <div class="notes-data" style="display:none;">
-        <strong>Speaker Script (20:00 - 24:00):</strong><br>
-        "We implemented an automated dual evaluation harness: 60 points of pure mathematical/policy checks, combined with 40 points of independent LLM audit. The judge model is decoupled via environment variables to eliminate self-evaluation bias."
       </div>
     </div>
 
@@ -624,10 +556,6 @@
           </tbody>
         </table>
       </div>
-      <div class="notes-data" style="display:none;">
-        <strong>Speaker Script (24:00 - 28:00):</strong><br>
-        "Here are our experimental findings across 66 independent benchmark runs. Gemini 3.7 Flash achieved the highest score (99.4%) while running in under 45 seconds. Notice that even lightweight models score over 97% because our deterministic core carries the mathematical heavy lifting."
-      </div>
     </div>
 
     <!-- SLIDE 8: Data-Driven Hill-Climbing -->
@@ -654,10 +582,6 @@
           </ul>
         </div>
       </div>
-      <div class="notes-data" style="display:none;">
-        <strong>Speaker Script (28:00 - 33:00):</strong><br>
-        "Rather than guessing, we documented our failure modes in a versioned loss pattern report. In v1.1, we introduced structured prompt directives that transformed our weakest scenario—ordering 500 units for an 8-unit demand—from 78% to a flawless 100% by properly quantifying working capital holding risk."
-      </div>
     </div>
 
     <!-- SLIDE 9: Live Demo & Observability -->
@@ -683,10 +607,6 @@
           </ul>
         </div>
       </div>
-      <div class="notes-data" style="display:none;">
-        <strong>Speaker Script (33:00 - 38:00):</strong><br>
-        "[Switch to Terminal for Live Demo] Let me demonstrate our parallel execution harness live. In under 14 seconds, all 11 scenario databases are processed and audited. Every decision is saved to trajectories with full token and thinking telemetry."
-      </div>
     </div>
 
     <!-- SLIDE 10: Production Roadmap -->
@@ -709,18 +629,37 @@
           <p>Connect Kafka/SAP event streams to trigger real-time re-planning whenever production schedules or warehouse stocks mutate.</p>
         </div>
       </div>
-      <div class="notes-data" style="display:none;">
-        <strong>Speaker Script (38:00 - 42:00):</strong><br>
-        "For our production roadmap with Apex, we propose transitioning from a single-node batch prototype to an event-driven Multi-Agent Committee with Human-in-the-Loop approval gates for capital expenditures exceeding $50k. This gives Apex complete autonomous speed with executive safety."
-      </div>
     </div>
 
-    <!-- SLIDE 11: Conclusion & Q&A -->
+    <!-- SLIDE 11: Final Scoreboard & Conclusion -->
     <div class="slide" id="slide-11">
-      <div class="slide-tag">Milestone Summary</div>
-      <h2 class="slide-title">Conclusion & Open Discussion</h2>
-      <p class="slide-subtitle">Delivering Autonomous, Policy-Compliant Procurement at Enterprise Scale</p>
+      <div class="slide-tag">Milestone Summary & Scoreboard</div>
+      <h2 class="slide-title">Delivering Autonomous Procurement Autonomy</h2>
+      <p class="slide-subtitle">Final Scoreboard & Open Alignment Discussion for Apex Manufacturing</p>
       
+      <div class="grid-4" style="margin-bottom: 24px;">
+        <div class="card card-emerald">
+          <div class="stat-label">Canonical Score</div>
+          <div class="stat-number" style="color: #34d399;">99.6%</div>
+          <p>597.5 / 600.0 (Scenarios 01–06)</p>
+        </div>
+        <div class="card card-highlight">
+          <div class="stat-label">Overall Benchmark</div>
+          <div class="stat-number" style="color: #60a5fa;">99.4%</div>
+          <p>1,093.5 / 1,100 (11 Scenarios)</p>
+        </div>
+        <div class="card">
+          <div class="stat-label">Parallel Wall Time</div>
+          <div class="stat-number">13.9s</div>
+          <p>⚡ 11 Scenarios in Parallel</p>
+        </div>
+        <div class="card card-emerald">
+          <div class="stat-label">Math & ASL Errors</div>
+          <div class="stat-number" style="color: #34d399;">0.0%</div>
+          <p>Deterministic Zero-Error Core</p>
+        </div>
+      </div>
+
       <div class="grid-2">
         <div class="card card-emerald">
           <h3>✅ Prototype Accomplishments</h3>
@@ -740,23 +679,8 @@
           </ul>
         </div>
       </div>
-      <div class="notes-data" style="display:none;">
-        <strong>Speaker Script (42:00 - 45:00):</strong><br>
-        "Thank you! Our interim prototype is robust, auditable, and production-ready. I look forward to your questions and aligning on the next steps for Apex Manufacturing."
-      </div>
     </div>
 
-  </div>
-
-  <!-- Presenter Notes Drawer -->
-  <div class="notes-drawer" id="notesDrawer">
-    <div class="notes-header">
-      <div class="notes-title">🎙️ Speaker Script & Presenter Notes</div>
-      <button class="btn" onclick="toggleNotes()" style="padding:2px 8px; font-size:11px;">Close (Esc)</button>
-    </div>
-    <div class="notes-content" id="notesContent">
-      Notes will appear here...
-    </div>
   </div>
 
   <script>
@@ -768,11 +692,6 @@
         s.classList.toggle('active', idx + 1 === currentSlide);
       });
       document.getElementById('slideCounter').innerText = `${currentSlide} / ${totalSlides}`;
-      
-      // Update Speaker Notes
-      const activeSlide = document.getElementById(`slide-${currentSlide}`);
-      const notes = activeSlide.querySelector('.notes-data');
-      document.getElementById('notesContent').innerHTML = notes ? notes.innerHTML : 'No speaker notes for this slide.';
     }
 
     function nextSlide() {
@@ -789,20 +708,12 @@
       }
     }
 
-    function toggleNotes() {
-      document.getElementById('notesDrawer').classList.toggle('open');
-    }
-
     // Keyboard Shortcuts
     window.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
         nextSlide();
       } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
         prevSlide();
-      } else if (e.key === 'n' || e.key === 'N') {
-        toggleNotes();
-      } else if (e.key === 'Escape') {
-        document.getElementById('notesDrawer').classList.remove('open');
       }
     });
 
